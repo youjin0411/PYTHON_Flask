@@ -122,3 +122,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+STATIC_URL = '/static/'                                    # 이미 settings.py 입력이 되어있을 것입니다.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')     #나중에 static 폴더를 모을 때 이곳에 모이게 됩니다.
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, 'static'),
+]                                                                 # app에서 static파일을 못 찾으면 여기 경로에서 찾게 합니다.
