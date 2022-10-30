@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='randIdres.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='randinsIdres.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>삐삐는 아이디</title>
 </head>
 <body>
-    <h1>🐣 랜덤 아이디 생성 🐣</h1>
-    <div class="Idres"><p>{{ id }}_{{ date }}</p></div>
+    <h1>🐣 인스타 아이디 생성 🐣</h1>
+    <div class="Idres"><p>kyj_{{ date }}</p></div>
     <div class="Idres"><p>의미 : {{ date2 }}</p></div>
     <div class="button">
         <a href="/" class="myButton">아이디 저장하기</a>
-        <a href="/randId" class="myButton">아이디 다시생성</a>
+        <a href="/randinsId" class="myButton">아이디 다시생성</a>
     </div>
 </body>
 </html>
