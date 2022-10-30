@@ -11,5 +11,9 @@ def hello():
 def start():
     return render_template('randId.html')
 
+@app.route('/randIdres')
+def start2():
+    return render_template('randIdres.html')
+
 if __name__ == "__main__":
     app.run()
