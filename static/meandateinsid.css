@@ -1,0 +1,75 @@
+*{
+    font-family: 'Do Hyeon', sans-serif;
+    color: #000000;
+}
+h1{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.button{
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+    grid-row-gap: 4px;
+    margin-top: 4.7vw;
+}
+
+.myButton {
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background-color: #E96F6F;
+	border: 2.8px solid #E96F6F;
+	cursor:pointer;
+	color:#ffffff;
+	font-size: 2vw;
+	font-weight: 500;
+	padding: 0.4167vw 1.8056vw;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #ffffff;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myButton:hover {
+	background-color:transparent;
+    border: solid #ffffff;
+    background-color: #461f1f96;
+    color: #ffffff;
+    
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+/* .button > :nth-child(4){
+    border: solid #ffffff;
+    background-color: #461f1f96;
+    color: #ffffff;
+} */
+main{
+    /* .calendar과 menu가 옆으로 붙게 됨(옆으로 붙으면서 정렬됨)  */
+    display: flex;
+    column-gap: 10px;
+    /* 화면 창을 줄이면 아래로 내려 감(옆으로 붙으면서 정렬된 것이 아래로 내려감 1단, 2단 */
+    flex-wrap: wrap;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+ul{
+    list-style: none;
+}
+
+.id{
+    font-size: 18.7px;
+    line-height: 1.5em;
+}
+.mean{
+    font-size: 16.5px;
+    line-height: 1.83em;
+}

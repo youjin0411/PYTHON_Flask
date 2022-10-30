@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='meandateid.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>삐삐는 아이디</title>
 </head>
 <body>
-    <h1>🐣 삐삐는 아이디 🐣</h1>
-
-    <div class="button">
+    <h1>🐣 아이디 의미 🐣</h1>
+    <main>
+        <div class="id">
+            <ul>
+                {% for d1 in data['암호'] %}
+                <li> {{ d1 }}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mean">
+            <ul>
+                {% for d2 in data['의미'] %}
+                <li> {{ d2 }}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+        <div class="button">
         <a href="#" class="myButton">로그인</a>
         <a href="/choi" class="myButton">랜덤 아이디 생성</a>
         <a href="#" class="myButton">아이디 만들기</a>

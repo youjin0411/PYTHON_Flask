@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='meandateinsid.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <title>삐삐는 아이디</title>
+</head>
+<body>
+    <h1>🐣 인스타 아이디 의미 🐣</h1>
+        <main>
+        <div class="id">
+            <ul>
+                {% for d1 in data2['아이디'] %}
+                <li> {{ d1 }}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="mean">
+            <ul>
+                {% for d2 in data2['의미'] %}
+                <li> {{ d2 }}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+</body>
+</html>

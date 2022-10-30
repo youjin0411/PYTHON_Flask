@@ -1,3 +1,4 @@
+from datetime import date
 from flask import Flask, render_template, request
 import random
 from csv import excel
@@ -84,6 +85,21 @@ def randinsIdres():
         makeId2 = str(makeId2).strip("''")
         id_mean2 = str(passli2[ind2]).strip('[]')
         return render_template('randinsIdres.html', date=makeId2, date2=id_mean2, id=id)
+
+# 아이디 의미 확인 페이지
+@app.route('/idmean')
+def idmean():
+    return render_template('idmean.html')
+
+# 일반 아이디 의미 확인 페이지
+@app.route('/meandateid')
+def meandateid():
+    return render_template('meandateid.html',data=data)
+
+# 인스타 아이디 의미 확인 페이지
+@app.route('/meandateinsid')
+def meandateinsid():
+    return render_template('meandateinsid.html', data2=data2)
 
 if __name__ == "__main__":
     app.run()

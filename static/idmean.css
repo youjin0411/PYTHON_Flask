@@ -1,0 +1,53 @@
+*{
+    font-family: 'Do Hyeon', sans-serif;
+    color: #000000;
+}
+h1{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.button{
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+    grid-row-gap: 4px;
+    margin-top: 4.7vw;
+}
+
+.myButton {
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
+	box-shadow:inset 0px 0px 0px 0px #ffffff;
+	background-color: #E96F6F;
+	border: 2.8px solid #E96F6F;
+	cursor:pointer;
+	color:#ffffff;
+	font-size: 2vw;
+	font-weight: 500;
+	padding: 0.4167vw 1.8056vw;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #ffffff;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myButton:hover {
+	background-color:transparent;
+    border: solid #ffffff;
+    background-color: #461f1f96;
+    color: #ffffff;
+    
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+/* .button > :nth-child(4){
+    border: solid #ffffff;
+    background-color: #461f1f96;
+    color: #ffffff;
+} */
