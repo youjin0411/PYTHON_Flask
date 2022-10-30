@@ -6,25 +6,8 @@ h1{
     text-align: center;
     margin: 0 auto;
     margin-top: 40px;
-    text-align: center;
-    font-size: 25px;
 }
-p{
-    text-align: center;
-    font-size: 25px;
-    color: aliceblue;
-    margin-top: 5px;
-}
-.Idres{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    margin: 0 auto;
-    margin-top: 40px;
-    background-color: #E96F6F;
-    color: #ffffff;
-    width: 300px;
-    height: 45px;
-}
+
 .button{
     place-items: center;
     display: grid;
@@ -34,11 +17,10 @@ p{
 }
 
 .myButton {
-    border-radius: 10vw;
 	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
 	box-shadow:inset 0px 0px 0px 0px #ffffff;
-	background-color: #FF8C8C;
+	background-color: #E96F6F;
 	border: 2.8px solid #E96F6F;
 	cursor:pointer;
 	color:#ffffff;
@@ -47,7 +29,7 @@ p{
 	padding: 0.4167vw 1.8056vw;
 	text-decoration:none;
 	text-shadow:0px 0px 0px #ffffff;
-    width: 15vw;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +38,7 @@ p{
 .myButton:hover {
 	background-color:transparent;
     border: solid #ffffff;
-    background-color: #ff9f9f96;
+    background-color: #461f1f96;
     color: #ffffff;
     
 }
@@ -64,3 +46,8 @@ p{
 	position:relative;
 	top:1px;
 }
+/* .button > :nth-child(4){
+    border: solid #ffffff;
+    background-color: #461f1f96;
+    color: #ffffff;
+} */
