@@ -63,23 +63,27 @@ def randinsId():
     return render_template('randinsId.html')
 
 # 인스타 아이디 생성 결과 페이지
-@app.route('/randinsIdres')
+@app.route('/randinsIdres', methods = ['POST', 'GET'])
 def randinsIdres():
-# 엑셀 파일의 인스타 아이디 리스트li2에 담기
-    for i in range(len(data2['아이디'])):
-        li2.append(data2['아이디'][i])	
-# 엑셀 파일의 암호 의미 리스트 passli2에 담기
-    for i in range(len(data2['의미'])):
-        passli2.append(data2['의미'][i])
-# 리스트 li2안에 있는 숫자 암호 랜덤으로 하나 makeId2에 주기
-    makeId2 = random.sample(li2, 1)
-    ansId = ' '.join(map(str, makeId2))
-    ind2 = li2.index(ansId)
-# [] 빠져나오기
-    makeId2 = str(makeId2).strip('[]')
-    makeId2 = str(makeId2).strip("''")
-    id_mean2 = str(passli2[ind2]).strip('[]')
-    return render_template('randinsIdres.html', date=makeId2, date2=id_mean2)
+    if request.method == 'POST':
+        id =  request.form.getlist('id[]')
+    # 엑셀 파일의 인스타 아이디 리스트li2에 담기
+        for i in range(len(data2['아이디'])):
+            li2.append(data2['아이디'][i])	
+    # 엑셀 파일의 암호 의미 리스트 passli2에 담기
+        for i in range(len(data2['의미'])):
+            passli2.append(data2['의미'][i])
+    # 리스트 li2안에 있는 숫자 암호 랜덤으로 하나 makeId2에 주기
+        makeId2 = random.sample(li2, 1)
+        ansId = ' '.join(map(str, makeId2))
+        ind2 = li2.index(ansId)
+    # [] 빠져나오기
+        id = str(id).strip('[]')
+        id = str(id).strip("''")
+        makeId2 = str(makeId2).strip('[]')
+        makeId2 = str(makeId2).strip("''")
+        id_mean2 = str(passli2[ind2]).strip('[]')
+        return render_template('randinsIdres.html', date=makeId2, date2=id_mean2, id=id)
 
 if __name__ == "__main__":
     app.run()

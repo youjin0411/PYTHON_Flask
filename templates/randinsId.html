@@ -12,13 +12,14 @@
 </head>
 <body>
     <h1>🐣 인스타 아이디 생성 🐣</h1>
-    <div class="selc">
-        <form action="">
-            <input type="text" placeholder="영문 및 한글 이름 입력">
+        <form action="http://127.0.0.1:5000/randinsIdres" method="post">
+            <div class="selc">
+                <input type="text" placeholder="영문 및 한글 이름 입력" id="id" name="id[]">
+            </div>
+            <div class="button">
+                <!-- <a href="/randIdres" class="myButton" type="submit">랜덤 아이디 생성</a> -->
+                <button type="submit" class="myButton" id="randinsIdres">랜덤 아이디 생성</button>
+            </div>
         </form>
-    </div>
-    <div class="button">
-        <a href="/randinsIdres" class="myButton">랜덤 아이디 생성</a>
-    </div>
 </body>
 </html>
