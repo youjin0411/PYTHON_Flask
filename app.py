@@ -1,5 +1,8 @@
 from datetime import date
-from flask import Flask, render_template, request
+from flask import Flask, session, render_template, redirect, request, url_for
+from flaskext.mysql import MySQL
+import MySQLdb.cursors
+import re
 import random
 from csv import excel
 from operator import index, indexOf
@@ -18,7 +21,15 @@ data2 = pd.read_excel('idname.xlsx')
 li2 = []
 passli2 = []
 
+mysql = MySQL()
 app = Flask(__name__)
+
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = '1234'
+app.config['MYSQL_DATABASE_DB'] = 'login'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.secret_key = "1234"
+mysql.init_app(app)
 
 # 시작 index.html
 @app.route("/")
@@ -100,6 +111,73 @@ def meandateid():
 @app.route('/meandateinsid')
 def meandateinsid():
     return render_template('meandateinsid.html', data2=data2)
+
+# 로그인 페이지
+@app.route('/login', methods=['GET', 'POST'])
+def main():
+    error = None
+    if request.method == 'POST':
+        id = request.form['id']
+        pw = request.form['pw']
+        name = request.form['name']
+ 
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql = "SELECT * FROM mypage WHERE id = %s AND password = %s AND name = %s"
+        value = (id, pw, name)
+        cursor.execute("set names utf8")
+        cursor.execute(sql, value)
+ 
+        data = cursor.fetchall()
+        cursor.close()
+        conn.close()
+ 
+        for row in data:
+            data = row[0]
+ 
+        if data:
+            session['login'] = name
+            return redirect(url_for('home'))
+        else:
+            error = 'invalid input data detected !'
+    return render_template('login.html', error = error)
+
+# 회원가입
+@app.route('/signup', methods=['GET', 'POST'])
+def register():
+    error = None
+    if request.method == 'POST':
+        id = request.form['regi_id']
+        pw = request.form['regi_pw']
+        name = request.form['regi_name']
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        sql = "INSERT INTO mypage (id, password, name) VALUES(%s, %s,%s)"
+        value = (id, pw, name)
+        cursor.execute("set names utf8")
+        cursor.execute(sql, value)
+ 
+        data = cursor.fetchall()
+
+        if not data:
+            conn.commit()
+            return redirect(url_for('main'))
+        else:
+            conn.rollback()
+            return "Register Failed"
+ 
+        cursor.close()
+        conn.close()
+    return render_template('signup.html', error=error)
+
+# 로그인 확인
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    error = None
+    id = session['login']
+    return render_template('home.html', error=error, name=id)
 
 if __name__ == "__main__":
     app.run()
