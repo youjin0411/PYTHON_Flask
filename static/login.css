@@ -11,4 +11,33 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(1, fr);
+}
+#name{
+    background-color: #E96F6F;
+    width: 20vw;
+    border: #E96F6F;
+    font-size: 1.5vw;
+	font-weight: 250;
+    padding: 7px;
+}
+#id{
+    background-color: #E96F6F;
+    width: 20vw;
+    border: #E96F6F;
+    font-size: 1.5vw;
+	font-weight: 250;
+    padding: 7px;
+}
+#pw{
+    background-color: #E96F6F;
+    width: 20vw;
+    border: #E96F6F;
+    font-size: 1.5vw;
+	font-weight: 250;
+    padding: 7px;
+}
+input::placeholder {
+  color: #FFDDDD;
 }
