@@ -2,27 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='signup.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>REGISTER</title>
 </head>
 <body>
-    <form method="POST" id="authForm">
-  <div>
-      <h3> Register </h3>
-      <p>
-          <label for="regi_id">아이디&nbsp&nbsp&nbsp</label>
-          <input type="text " id="regi_id" name="regi_id" >
-      </p>
- 
-      <p>
-          <label for="regi_pw">비밀번호</label>
-          <input type="password" id="regi_pw" name="regi_pw">
-      </p>
-      <p>
-          <label for="regi_name">이름</label>
-          <input type="text" id="regi_name" name="regi_name">
-      </p>
-      <input type="submit" name="submit" value="submit" style="WIDTH: 183pt"/>
-    </div>
+    <form method="POST">
+            <h1>🐣 회원가입 🐣</h1>
+            <div id="authForm">
+                <p>
+                    <label for="regi_id">아이디&nbsp&nbsp&nbsp</label>
+                    <input type="text " id="regi_id" name="regi_id" placeholder="아이디를 입력해주세요" style="border:0 solid black;">
+                </p>
+            
+                <p>
+                    <label for="regi_pw">비밀번호</label>
+                    <input type="password" id="regi_pw" name="regi_pw" placeholder="비밀번호를 입력해주세요" style="border:0 solid black;">
+                </p>
+                <p>
+                    <label for="regi_name">이름</label>
+                    <input type="text" id="regi_name" name="regi_name" placeholder="이름을 입력해주세요" style="border:0 solid black;">
+                </p>
+
+                
+                <input type="submit" name="submit" value="submit" style="WIDTH: 183pt" style="border:0 solid black;"/>
+        </div>
 </form>
  
 </body>
