@@ -1,5 +1,6 @@
 from datetime import date
 from flask import Flask, session, render_template, redirect, request, url_for
+from flask import flash
 from flaskext.mysql import MySQL
 import MySQLdb.cursors
 import re
@@ -23,6 +24,7 @@ passli2 = []
 
 mysql = MySQL()
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "ABCD"
 
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = '1234'  
@@ -150,39 +152,38 @@ def register():
         id = request.form['regi_id']
         pw = request.form['regi_pw']
         name = request.form['regi_name']
-        # chk1_1 = request.form['get-up-1']
-        # chk1_2 = request.form['make-bed-1']
-        # chk1_3 = request.form['clean-teeth-1']
-        # chk1_4 = request.form['dress-up-1']
-        # chk1_5 = request.form['easy-up-1']
-        # chk2_1 = request.form['get-up-2']
-        # chk2_2 = request.form['make-bed-2']
-        # chk2_3 = request.form['clean-teeth-2']
-        # chk2_4 = request.form['dress-up-2']
-        # chk2_5 = request.form['easy-up-2']
-        # chk3_1 = request.form['get-up-3']
-        # chk3_2 = request.form['make-bed-3']
-        # chk3_3 = request.form['clean-teeth-3']
-        # chk3_4 = request.form['dress-up-3']
-        
+
         conn = mysql.connect()
         cursor = conn.cursor()
 
-        sql = "INSERT INTO mypage (id, password, name) VALUES(%s, %s,%s)"
-        value = (id, pw, name)
+        sql = "SELECT * FROM mypage WHERE id = %s AND password = %s"
+        value = (id, pw)
         cursor.execute("set names utf8")
         cursor.execute(sql, value)
  
         data = cursor.fetchall()
-
+ 
+        for row in data:
+            data = row[0]
+ 
         if not data:
-            conn.commit()
-            return redirect(url_for('main'))
-        else:
-            conn.rollback()
-            return "Register Failed" 
+            sql = "INSERT INTO mypage (id, password, name) VALUES(%s, %s,%s)"
+            value = (id, pw, name)
+            cursor.execute("set names utf8")
+            cursor.execute(sql, value)
+    
+            data = cursor.fetchall()
+
+            if not data:
+                conn.commit()
+                return redirect('/login')
+            else:
+                conn.rollback()
+                flash("중복된 이메일 주소입니다.")
+                return render_template("signup.html")
         cursor.close()
         conn.close()
+        flash("중복된 이메일 주소입니다.")
     return render_template('signup.html', error=error)
 
 # 로그인 확인

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="{{ url_for('static', filename='signup.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='signup.js') }}" ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -10,6 +11,13 @@
 </head>
 <body>
 <form method="POST">
+  {%with messages = get_flashed_messages()%}
+  {%if messages %}
+    <script type="text/javascript">
+      alert("{{messages[-1]}}");
+    </script>
+    {%endif%}
+  {%endwith%}
             <h1>🐣 회원가입 🐣</h1>
             <div id="authForm">
                 <p>
@@ -25,14 +33,11 @@
                     <label for="regi_name">이름</label>
                     <input type="text" id="regi_name" name="regi_name" placeholder="이름을 입력해주세요" style="border:0 solid black;">
                 </p>
-
-                
-                <input type="submit" name="submit" value="submit" style="WIDTH: 183pt" style="border:0 solid black;"/>
-        </div>
+                <input type="submit" name="submit" value="확인" style="WIDTH: 183pt" style="border:0 solid black;"/>
+        </div>  
 </form>
 
-<div class="container">
-<br>
+<div method="POST" class="container">
 <br>
   <!-- checkbox #1 form -->
   <form class="form">
@@ -42,86 +47,31 @@
     <div class="checkbox-block">
       
       <!--checkbox 1-->
-    <input class="checkbox-effect checkbox-effect-1" id="get-up-1" type="checkbox" value="get-up-1" name="get-up-1"/>
+    <input class="checkbox-effect checkbox-effect-1" id="get-up-1" type="checkbox" value="get-up-1" name="chked" onclick='checkOnlyOne(this)'/>
     <label for="get-up-1">&nbsp;귀여운 아이디&nbsp;&nbsp;&nbsp;</label>
     <br>
     
     <!--checkbox 2-->
-    <input class="checkbox-effect checkbox-effect-1" id="make-bed-1" type="checkbox" value="make-bed-1" name="make-bed-1"/>
+    <input class="checkbox-effect checkbox-effect-1" id="make-bed-1" type="checkbox" value="make-bed-1" name="chked" onclick='checkOnlyOne(this)'/>
     <label for="make-bed-1">&nbsp;심플한 아이디&nbsp;&nbsp;&nbsp;</label>
     <br>
     
     <!--checkbox 3-->
-    <input class="checkbox-effect checkbox-effect-1" id="clean-teeth-1" type="checkbox" value="clean-teeth-1" name="clean-teeth-1"/>
+    <input class="checkbox-effect checkbox-effect-1" id="clean-teeth-1" type="checkbox" value="clean-teeth-1" name="chked" onclick='checkOnlyOne(this)'/>
     <label for="clean-teeth-1">의미있는 아이디&nbsp;&nbsp;</label>
     <br>
     
     <!--checkbox 4-->
-    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="dress-up-1" name="dress-up-1"/>
+    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="dress-up-1" name="chked" onclick='checkOnlyOne(this)'/>
     <label for="dress-up-1">&nbsp;독특한 아이디&nbsp;&nbsp;&nbsp; </label>
     <br>
 
     <!--checkbox 5-->
-    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="dress-up-1" name="easy-up-1"/>
+    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="dress-up-1" name="chked" onclick='checkOnlyOne(this)'/>
     <label for="dress-up-1">외우기 쉬운 아이디</label>
     <br>
-      
-    </div>
-  </form>
-  
-  <!-- checkbox #2 form -->
-  <form class="form">
-    
-    <h2>Q2 . 아이디 사용하는 성격</h2>
-    
-    <div class="checkbox-block">
-      
-      <!--checkbox 1-->
-    <input class="checkbox-effect checkbox-effect-2" id="get-up-2" type="checkbox" value="get-up-2" name="get-up-2"/>
-    <label for="get-up-2">사용하는 아이디만 사용&nbsp;&nbsp;&nbsp;</label>
     <br>
-    <!--checkbox 2-->
-    <input class="checkbox-effect checkbox-effect-2" id="make-bed-2" type="checkbox" value="make-bed-2" name="make-bed-2"/>
-    <label for="make-bed-2">매번 다른 아이디 사용&nbsp;&nbsp;&nbsp;&nbsp;</label>
-    <br>
-    <!--checkbox 3-->
-    <input class="checkbox-effect checkbox-effect-2" id="clean-teeth-2" type="checkbox" value="clean-teeth-2" name="clean-teeth-2"/>
-    <label for="clean-teeth-2">검색을 통한 아이디 사용&nbsp;&nbsp;</label>
-    <br>
-    <!--checkbox 4-->
-    <input class="checkbox-effect checkbox-effect-2" id="dress-up-2" type="checkbox" value="dress-up-2" name="dress-up-2"/>
-    <label for="dress-up-2">&nbsp;0000 같은 아이디 사용&nbsp;</label>
-      <br>
-    <!--checkbox 5-->
-    <input class="checkbox-effect checkbox-effect-2" id="dress-up-2" type="checkbox" value="dress-up-2" name="easy-up-2"/>
-    <label for="dress-up-2">이름,생일 포함 아이디 사용</label>
-    <br>
-    </div>
-  </form>
-  
-  <!-- checkbox #3 form -->
-  <form class="form">
-    
-    <h2>Q2 .좋아하는 동물</h2>
-    
-    <div class="checkbox-block">
-      
-      <!--checkbox 1-->
-    <input class="checkbox-effect checkbox-effect-3" id="get-up-3" type="checkbox" value="get-up-3" name="get-up-3"/>
-    <label for="get-up-3">&nbsp;펭귄&nbsp;</label>
-    <br>
-    <!--checkbox 2-->
-    <input class="checkbox-effect checkbox-effect-3" id="make-bed-3" type="checkbox" value="make-bed-3" name="make-bed-3"/>
-    <label for="make-bed-3">병아리</label>
-    <br>
-    <!--checkbox 3-->
-    <input class="checkbox-effect checkbox-effect-3" id="clean-teeth-3" type="checkbox" value="clean-teeth-3" name="clean-teeth-3"/>
-    <label for="clean-teeth-3">거북이</label>
-    <br>
-    <!--checkbox 4-->
-    <input class="checkbox-effect checkbox-effect-3" id="dress-up-3" type="checkbox" value="dress-up-3" name="dress-up-3"/>
-    <label for="dress-up-3">&nbsp;참새&nbsp;</label>
-      <br>
+    <input type="submit" name="submit" value="선택" style="WIDTH: 183pt" style="border:0 solid black;"/>
     </div>
   </form>
 </div>
