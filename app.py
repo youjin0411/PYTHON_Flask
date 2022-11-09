@@ -150,7 +150,21 @@ def register():
         id = request.form['regi_id']
         pw = request.form['regi_pw']
         name = request.form['regi_name']
-
+        # chk1_1 = request.form['get-up-1']
+        # chk1_2 = request.form['make-bed-1']
+        # chk1_3 = request.form['clean-teeth-1']
+        # chk1_4 = request.form['dress-up-1']
+        # chk1_5 = request.form['easy-up-1']
+        # chk2_1 = request.form['get-up-2']
+        # chk2_2 = request.form['make-bed-2']
+        # chk2_3 = request.form['clean-teeth-2']
+        # chk2_4 = request.form['dress-up-2']
+        # chk2_5 = request.form['easy-up-2']
+        # chk3_1 = request.form['get-up-3']
+        # chk3_2 = request.form['make-bed-3']
+        # chk3_3 = request.form['clean-teeth-3']
+        # chk3_4 = request.form['dress-up-3']
+        
         conn = mysql.connect()
         cursor = conn.cursor()
 
@@ -166,8 +180,7 @@ def register():
             return redirect(url_for('main'))
         else:
             conn.rollback()
-            return "Register Failed"
- 
+            return "Register Failed" 
         cursor.close()
         conn.close()
     return render_template('signup.html', error=error)
