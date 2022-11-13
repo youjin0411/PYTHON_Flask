@@ -41,4 +41,7 @@ h2{
 .checkbox-block{
     text-align: center;
     margin: 0 auto;
+    background-color: #FFC8C8;
+    padding-right: 10px;
+    padding-left: 10px;
 }
