@@ -168,7 +168,7 @@ def register():
             data = row[0]
  
         if not data:
-            sql = "INSERT INTO mypage (id, password, name, ans) VALUES(%s, %s,%s, %s)"
+            sql = "INSERT INTO mypage (id, password, name, ans) VALUES(%s, %s, %s, %s)"
             value = (id, pw, name, animal)
             cursor.execute("set names utf8")
             cursor.execute(sql, value)

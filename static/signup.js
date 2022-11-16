@@ -16,6 +16,6 @@ function checkOnlyOne(element) {
     result = '';
   }
   
-  document.getElementById('result').innerText = result;
+  document.getElementById('result').value = result;
 }
 
