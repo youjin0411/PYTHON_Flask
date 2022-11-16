@@ -152,6 +152,7 @@ def register():
         id = request.form['regi_id']
         pw = request.form['regi_pw']
         name = request.form['regi_name']
+        animal = request.form['result']
 
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -167,8 +168,8 @@ def register():
             data = row[0]
  
         if not data:
-            sql = "INSERT INTO mypage (id, password, name) VALUES(%s, %s,%s)"
-            value = (id, pw, name)
+            sql = "INSERT INTO mypage (id, password, name, ans) VALUES(%s, %s,%s, %s)"
+            value = (id, pw, name, animal)
             cursor.execute("set names utf8")
             cursor.execute(sql, value)
     

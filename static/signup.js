@@ -8,5 +8,14 @@ function checkOnlyOne(element) {
   })
   
   element.checked = true;
+
+  let result = '';
+  if(event.target.checked)  {
+    result = event.target.value;
+  }else {
+    result = '';
+  }
+  
+  document.getElementById('result').innerText = result;
 }
 
