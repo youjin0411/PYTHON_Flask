@@ -196,3 +196,8 @@ def home():
 
 if __name__ == "__main__":
     app.run()
+
+#마이페이지
+@app.route('/mypage')
+def mypage():
+    return render_template('mypage.html')
