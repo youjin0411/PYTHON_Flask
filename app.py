@@ -201,3 +201,8 @@ if __name__ == "__main__":
 @app.route('/mypage')
 def mypage():
     return render_template('mypage.html')
+
+#로그인 후 index페이지
+@app.route('/Login_index')
+def Login_index():
+    return render_template('Login_index.html')
