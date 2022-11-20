@@ -37,6 +37,7 @@ mysql.init_app(app)
 @app.route("/")
 def hello():
     return render_template('index.html')
+
 # 아이디 생성 선택 - 일반/인스타 선택
 @app.route('/choi')
 def choi():
@@ -139,7 +140,7 @@ def main():
  
         if data:
             session['login'] = name
-            return redirect(url_for('home'))
+            return redirect(url_for('loginindex'))
         else:
             error = 'invalid input data detected !'
     return render_template('login.html', error = error)
@@ -188,11 +189,11 @@ def register():
     return render_template('signup.html', error=error)
 
 # 로그인 확인
-@app.route('/home', methods=['GET', 'POST'])
-def home():
+@app.route('/loginindex', methods=['GET', 'POST'])
+def loginindex():
     error = None
     id = session['login']
-    return render_template('home.html', error=error, name=id)
+    return render_template('loginindex.html', error=error, name=id)
 
 if __name__ == "__main__":
     app.run()
