@@ -203,7 +203,10 @@ def mypage():
     name = session['login']
     id = session['id']
     pw = session['pw']
-    return render_template('mypage.html', error=error, name=name, id=id, pw=pw)
+    if id == "r":
+        char = "병아리"
+
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=char)  
 
 if __name__ == "__main__":
     app.run()
