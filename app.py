@@ -140,6 +140,8 @@ def main():
  
         if data:
             session['login'] = name
+            session['id'] = id
+            session['pw'] = pw
             return redirect(url_for('loginindex'))
         else:
             error = 'invalid input data detected !'
@@ -168,7 +170,7 @@ def register():
         for row in data:
             data = row[0]
  
-        if not data:
+        if not data and id != "" and pw != "":
             sql = "INSERT INTO mypage (id, password, name, ans) VALUES(%s, %s, %s, %s)"
             value = (id, pw, name, animal)
             cursor.execute("set names utf8")
@@ -195,10 +197,13 @@ def loginindex():
     id = session['login']
     return render_template('loginindex.html', error=error, name=id)
 
+@app.route('/mypage', methods=['GET', 'POST'])
+def mypage():
+    error = None
+    name = session['login']
+    id = session['id']
+    pw = session['pw']
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw)
+
 if __name__ == "__main__":
     app.run()
-
-#마이페이지
-@app.route('/mypage')
-def mypage():
-    return render_template('mypage.html')
