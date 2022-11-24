@@ -11,13 +11,39 @@ h1 {
 
 figure {
     background-color: #595959;
-    width: 30%;
-    height: 35%
+    width: 340px;
+    height: 340px
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(1, 20%);
+    grid-template-columns: repeat(1, 1fr);
+    font-size: 1.8rem;
 }
 
-.group {}
+.group {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 4rem;
+    margin-left: -3rem;
+}
+
+.btn {
+    /* 중앙정렬 */
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #FFC8C8;
+    font-size: 2rem;
+}

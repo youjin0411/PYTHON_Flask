@@ -203,10 +203,23 @@ def mypage():
     name = session['login']
     id = session['id']
     pw = session['pw']
-    if id == "r":
-        char = "병아리"
+    # if id == "r":
+    #     char = "병아리"
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM mypage WHERE id = %s"
+    value = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql, value)
+    data = cursor.fetchall()
+    # data에서 ans값만 뽑아내기
+    for row in data:
+        data = row[5]
 
-    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=char)  
+    cursor.close()
+    conn.close()
+
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
 
 if __name__ == "__main__":
     app.run()
