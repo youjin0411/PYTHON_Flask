@@ -197,14 +197,14 @@ def loginindex():
     id = session['login']
     return render_template('loginindex.html', error=error, name=id)
 
+# 로그아웃
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     error = None
     name = session['login']
     id = session['id']
     pw = session['pw']
-    # if id == "r":
-    #     char = "병아리"
+    
     conn = mysql.connect()
     cursor = conn.cursor()
     sql = "SELECT * FROM mypage WHERE id = %s"
