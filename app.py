@@ -247,6 +247,10 @@ def loginindex():
 # 마이페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
+    id = session['id']
+    if id == "":
+        flash("로그인 후 이용해주십시오.")
+        return redirect('/mypage')
     error = None
     name = session['login']
     id = session['id']
@@ -262,12 +266,9 @@ def mypage():
     # data에서 ans값만 뽑아내기
     for row in data:
         data = row[5]
-
     cursor.close()
     conn.close()
-
     return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
-
 
 @app.route('/saveidview', methods=['GET', 'POST'])
 def saveidview():

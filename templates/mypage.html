@@ -41,6 +41,11 @@
         </nav>
     </header>
     <div class="home">
+        {%with messages = get_flashed_messages()%} {%if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+        {%endif%} {%endwith%}
         <h1>🐣 마이페이지 🐣</h1>
         <div class="group">
             <div class="back">
