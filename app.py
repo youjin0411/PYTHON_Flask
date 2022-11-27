@@ -70,7 +70,26 @@ def randIdres():
         id = str(id).strip("''")
         makeId = str(makeId).strip('[]')
         id_mean = str(passli[ind]).strip('[]')
-        return render_template('randIdres.html', date=makeId, date2=id_mean, id=id)
+
+        error = None
+        user = session['id']
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
+        saveid = id,"_",makeId
+        saveid = "".join(saveid)
+        value = (user, saveid, id_mean)
+        cursor.execute(sql, value)
+
+        d = cursor.fetchall()
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return render_template('randIdres.html',date=makeId, date2=id_mean, id=id)
 
 # 아이디 생성 페이지
 @app.route('/randinsId')
@@ -98,6 +117,25 @@ def randinsIdres():
         makeId2 = str(makeId2).strip('[]')
         makeId2 = str(makeId2).strip("''")
         id_mean2 = str(passli2[ind2]).strip('[]')
+
+        error = None
+        user = session['id']
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
+        saveid = id,"_",makeId2
+        saveid = "".join(saveid)
+        value = (user, saveid, id_mean2)
+        cursor.execute(sql, value)
+
+        d = cursor.fetchall()
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
         return render_template('randinsIdres.html', date=makeId2, date2=id_mean2, id=id)
 
 # 아이디 의미 확인 페이지
@@ -169,6 +207,13 @@ def register():
  
         for row in data:
             data = row[0]
+
+        if id == "" or pw == "" or name == "":
+            flash("아이디와 비밀번호, 이름을 입력해주세요.")
+            return render_template("signup.html")
+        elif animal == "":
+            flash("동물을 선택해주세요.")
+            return render_template("signup.html")
  
         if not data and id != "" and pw != "":
             sql = "INSERT INTO mypage (id, password, name, ans) VALUES(%s, %s, %s, %s)"
@@ -185,6 +230,7 @@ def register():
                 conn.rollback()
                 flash("중복된 이메일 주소입니다.")
                 return render_template("signup.html")
+            
         cursor.close()
         conn.close()
         flash("중복된 이메일 주소입니다.")
@@ -197,7 +243,7 @@ def loginindex():
     id = session['login']
     return render_template('loginindex.html', error=error, name=id)
 
-# 로그아웃
+# 마이페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     error = None
@@ -220,6 +266,28 @@ def mypage():
     conn.close()
 
     return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
+
+
+@app.route('/saveidview', methods=['GET', 'POST'])
+def saveidview():
+    error = None
+    id = session['id']
+    
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM save_id WHERE user = %s"
+    value = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql, value)
+    data = cursor.fetchall()
+    # data에서 ans값만 뽑아내기
+    for row in data:
+        data = row[1:]
+
+    cursor.close()
+    conn.close()
+
+    return render_template('saveidview.html', error=error, char=data)
 
 if __name__ == "__main__":
     app.run()
