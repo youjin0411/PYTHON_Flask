@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='meandateid.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='game.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -40,23 +38,16 @@
             </div>
         </nav>
     </header>
-    <h1>🐣 아이디 의미 🐣</h1>
-    <main>
-        <div class="id">
-            <ul>
-                {% for d1 in data['암호'] %}
-                <li> {{ d1 }}</li>
-                <hr> {% endfor %}
-            </ul>
+    <h1>퀴즈 게임</h1>
+    <div class="quiz">
+        <h1></h1>
+        <div class="grid-container">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
         </div>
-        <div class="mean">
-            <ul>
-                {% for d2 in data['의미'] %}
-                <li> {{ d2 }}</li>
-                <hr> {% endfor %}
-            </ul>
-        </div>
-    </main>
+    </div>
 </body>
 
 </html>
