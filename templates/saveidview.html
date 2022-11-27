@@ -13,8 +13,32 @@
 </head>
 
 <body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <a href="/" class="nav-logo">
+                <div>🐣 삐삐는 아이디 🐣</div>
+            </a>
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav-item">
+                        <a href="/login" class="myButton">login</a></li>
+                    <li class="nav-item">
+                        <a href="/mypage" class="myButton">mypage</a></li>
+                    <li class="nav-item">
+                        <a href="/choi" class="myButton">랜덤 아이디 생성</a></li>
+                    <li class="nav-item">
+                        <a href="/makeid" class="myButton">아이디 만들기</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="myButton">game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <h1>저장된 아이디</h1>
-    <main>
+    <main class="body">
         <div class="id">
             <ul>
                 {% for d1 in char %}
@@ -30,10 +54,6 @@
             </ul>
         </div>
     </main>
-    <div class="button">
-        <a href="/loginindex" class="myButton">메인페이지</a>
-        <a href="/mypage" class="myButton">마이페이지</a>
-    </div>
 </body>
 
 </html>

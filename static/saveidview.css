@@ -3,49 +3,85 @@
     color: #000000;
 }
 
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
 h1 {
     text-align: center;
     margin: 0 auto;
     margin-top: 40px;
 }
 
-.button {
-    place-items: center;
-    display: grid;
-    grid-template-columns: repeat(1, 2fr);
-    grid-row-gap: 4px;
-    margin-top: 4.7vw;
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
 }
 
-.myButton {
-    -moz-box-shadow: inset 0px 0px 0px 0px #ffffff;
-    -webkit-box-shadow: inset 0px 0px 0px 0px #ffffff;
-    box-shadow: inset 0px 0px 0px 0px #ffffff;
-    background-color: #E96F6F;
-    border: 2.8px solid #E96F6F;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 2vw;
-    font-weight: 500;
-    padding: 0.4167vw 1.8056vw;
-    text-decoration: none;
-    text-shadow: 0px 0px 0px #ffffff;
-    width: 20vw;
+.container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+header {
+    background-color: #ffffff;
+}
+
+nav {
+    height: 44px;
+    /* nav글자 높이 */
+    /* 수평배열 */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    /* nav글자 중앙정렬 */
 }
 
-.myButton:hover {
-    background-color: transparent;
-    border: solid #ffffff;
-    background-color: #461f1f96;
-    color: #ffffff;
+nav i {
+    font-size: 1.8rem;
+    /* 밥 아이콘 크게 하기 : 아이콘 1.25배 */
 }
 
-.myButton:active {
-    position: relative;
-    top: 1px;
+.nav-logo>div {
+    float: left;
+    color: #FFE144;
+    font-size: 1.85rem;
+}
+
+nav a {
+    color: #595959;
+}
+
+.nav-toggle {
+    /* toggle버튼이 보이지 않도록  */
+    display: none;
+    /* visibility: hidden; */
+}
+
+.nav-toggle i {
+    color: #595959;
+}
+
+.nav-list {
+    /* 수평배열 */
+    display: flex;
+    column-gap: 3rem;
+    /* 12px = nav글자사이의 거리 */
+}
+
+.nav-link {
+    display: block;
+    /* a 태그가 한 줄 전체를 차지해서 링크가 동작하도록... */
+}
+
+.nav-link {
+    color: #fff;
 }
 
 
@@ -64,6 +100,8 @@ main {
     margin: 0 auto;
     align-items: center;
     justify-content: center;
+    background-color: #FFEE54;
+    width: 50%;
 }
 
 ul {

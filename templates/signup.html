@@ -1,67 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link href="{{ url_for('static', filename='signup.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='signup.js') }}" ></script>
+    <script src="{{ url_for('static', filename='signup.js') }}"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>REGISTER</title>
 </head>
-<body>
-<form method="POST">
-  {%with messages = get_flashed_messages()%}
-  {%if messages %}
-    <script type="text/javascript">
-      alert("{{messages[-1]}}");
-    </script>
-    {%endif%}
-  {%endwith%}
-            <h1>🐣 회원가입 🐣</h1>
-            <div id="authForm">
-                <p>
-                    <label for="regi_id">아이디&nbsp&nbsp&nbsp</label>
-                    <input type="text " id="regi_id" name="regi_id" placeholder="아이디를 입력해주세요" style="border:0 solid black;">
-                </p>
-            
-                <p>
-                    <label for="regi_pw">비밀번호</label>
-                    <input type="password" id="regi_pw" name="regi_pw" placeholder="비밀번호를 입력해주세요" style="border:0 solid black;">
-                </p>
-                <p>
-                    <label for="regi_name">이름</label>
-                    <input type="text" id="regi_name" name="regi_name" placeholder="이름을 입력해주세요" style="border:0 solid black;">
-                </p>
-                
-                <div class="checkbox-block">
-                  <h2>Q1 . 좋아하는 스타일은 ?</h2>
-                    <!--checkbox 1-->
-                    <input class="checkbox-effect checkbox-effect-1" id="get-up-1" type="checkbox" value="병아리" name="chked" onclick='checkOnlyOne(this)'/>귀여운 스타일
-                    <br>
-                    
-                    <!--checkbox 2-->
-                    <input class="checkbox-effect checkbox-effect-1" id="make-bed-1" type="checkbox" value="강아지" name="chked" onclick='checkOnlyOne(this)'/>발랄한 스타일
-                    <br>
-                    
-                    <!--checkbox 3-->
-                    <input class="checkbox-effect checkbox-effect-1" id="clean-teeth-1" type="checkbox" value="호랑이" name="chked" onclick='checkOnlyOne(this)'/>파워풀한 스타일
-                    <br>
-                    
-                    <!--checkbox 4-->
-                    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="공작새" name="chked" onclick='checkOnlyOne(this)'/>화려한 스타일
-                    <br>
 
-                    <!--checkbox 5-->
-                    <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="고양이" name="chked" onclick='checkOnlyOne(this)'/>세침한 스타일
-                    <br>
-                    <br>
-                    <input type="hidden" id='result' name='result'></div>
-                </div>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <a href="/" class="nav-logo">
+                <div>🐣 삐삐는 아이디 🐣</div>
+            </a>
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav-item">
+                        <a href="/login" class="myButton">login</a></li>
+                    <li class="nav-item">
+                        <a href="/mypage" class="myButton">mypage</a></li>
+                    <li class="nav-item">
+                        <a href="/choi" class="myButton">랜덤 아이디 생성</a></li>
+                    <li class="nav-item">
+                        <a href="/makeid" class="myButton">아이디 만들기</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="myButton">game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <form method="POST">
+        {%with messages = get_flashed_messages()%} {%if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+        {%endif%} {%endwith%}
+        <h1>🐣 회원가입 🐣</h1>
+        <div id="authForm">
+            <p>
+                <label for="regi_id">아이디&nbsp&nbsp&nbsp</label>
+                <input type="text " id="regi_id" name="regi_id" placeholder="아이디를 입력해주세요" style="border:0 solid black;">
+            </p>
+
+            <p>
+                <label for="regi_pw">비밀번호&nbsp</label>
+                <input type="password" id="regi_pw" name="regi_pw" placeholder="비밀번호를 입력해주세요" style="border:0 solid black;">
+            </p>
+            <p>
+                <label for="regi_name">이름&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <input type="text" id="regi_name" name="regi_name" placeholder="이름을 입력해주세요" style="border:0 solid black;">
+            </p>
+
+            <div class="checkbox-block">
+                <h2>Q1 . 좋아하는 스타일은 ?</h2>
+                <!--checkbox 1-->
+                <input class="checkbox-effect checkbox-effect-1" id="get-up-1" type="checkbox" value="병아리" name="chked" onclick='checkOnlyOne(this)' />귀여운 스타일
                 <br>
-                <input type="submit" name="submit" value="확인" style="WIDTH: 183pt" style="border:0 solid black;" style="margin: 0 auto" id="clickbtn"/>
-            </div>  
-</form>
-</div>
+
+                <!--checkbox 2-->
+                <input class="checkbox-effect checkbox-effect-1" id="make-bed-1" type="checkbox" value="강아지" name="chked" onclick='checkOnlyOne(this)' />발랄한 스타일
+                <br>
+
+                <!--checkbox 3-->
+                <input class="checkbox-effect checkbox-effect-1" id="clean-teeth-1" type="checkbox" value="호랑이" name="chked" onclick='checkOnlyOne(this)' />파워풀한 스타일
+                <br>
+
+                <!--checkbox 4-->
+                <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="공작새" name="chked" onclick='checkOnlyOne(this)' />화려한 스타일
+                <br>
+
+                <!--checkbox 5-->
+                <input class="checkbox-effect checkbox-effect-1" id="dress-up-1" type="checkbox" value="고양이" name="chked" onclick='checkOnlyOne(this)' />세침한 스타일
+                <br>
+                <br>
+                <input type="hidden" id='result' name='result'></div>
+        </div>
+        <br>
+        <input type="submit" name="submit" value="확인" style="WIDTH: 183pt" style="border:0 solid black;" style="margin: 0 auto" id="clickbtn" />
+        </div>
+    </form>
+    </div>
 </body>
+
 </html>

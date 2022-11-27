@@ -89,6 +89,7 @@ def randIdres():
         conn.commit()
         cursor.close()
         conn.close()
+
         return render_template('randIdres.html',date=makeId, date2=id_mean, id=id)
 
 # 아이디 생성 페이지
@@ -180,7 +181,7 @@ def main():
             session['login'] = name
             session['id'] = id
             session['pw'] = pw
-            return redirect(url_for('loginindex'))
+            return redirect(url_for('mypage')) 
         else:
             error = 'invalid input data detected !'
     return render_template('login.html', error = error)
@@ -272,7 +273,6 @@ def mypage():
 def saveidview():
     error = None
     id = session['id']
-    
     conn = mysql.connect()
     cursor = conn.cursor()
     sql = "SELECT * FROM save_id WHERE user = %s"
@@ -294,6 +294,40 @@ def saveidview():
     conn.close()
 
     return render_template('saveidview.html', error=error, char=result, char2 = result2)
+
+@app.route('/makeid', methods=['GET', 'POST'])
+def makeid():
+    return render_template('makeid.html')
+
+@app.route('/makeidres', methods=['GET', 'POST'])
+def makeidres():
+    if request.method == 'POST':
+        id = request.form['name[]']
+        pw = request.form['pw[]']
+        mean = request.form['mean[]']
+
+        id = str(id).strip('[]')
+        id = str(id).strip("''")
+
+        error = None
+        user = session['id']
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
+        saveid = id,"_",pw
+        saveid = "".join(saveid)
+        value = (user, saveid, mean)
+        cursor.execute(sql, value)
+
+        d = cursor.fetchall()
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return render_template('makeidres.html', id=id, data=pw, data2=mean)
 
 if __name__ == "__main__":
     app.run()

@@ -1,43 +1,153 @@
-*{
+* {
     font-family: 'Do Hyeon', sans-serif;
     color: #000000;
 }
-h1{
+
+h1 {
     text-align: center;
     margin: 0 auto;
     margin-top: 40px;
 }
-#authForm{
+
+* {
+    font-family: 'Do Hyeon', sans-serif;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+}
+
+.input {
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+h2 {
+    color: #000000;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+header {
+    background-color: #ffffff;
+}
+
+nav {
+    height: 44px;
+    /* nav글자 높이 */
+    /* 수평배열 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* nav글자 중앙정렬 */
+}
+
+nav i {
+    font-size: 1.8rem;
+    /* 밥 아이콘 크게 하기 : 아이콘 1.25배 */
+}
+
+.nav-logo>div {
+    color: #FFE144;
+    font-size: 1.85rem;
+}
+
+nav a {
+    color: #595959;
+}
+
+.nav-toggle {
+    /* toggle버튼이 보이지 않도록  */
+    display: none;
+    /* visibility: hidden; */
+}
+
+.nav-toggle i {
+    color: #595959;
+}
+
+.nav-list {
+    /* 수평배열 */
+    display: flex;
+    column-gap: 3rem;
+    /* 12px = nav글자사이의 거리 */
+}
+
+.nav-link {
+    display: block;
+    /* a 태그가 한 줄 전체를 차지해서 링크가 동작하도록... */
+}
+
+.nav-link {
+    color: #fff;
+}
+
+select {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.form {
+    margin: 0 auto;
+    margin-top: 2%;
+    background-color: #FFEE54;
+    width: 50%;
+    height: 150%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+}
+
+#authForm {
     display: flex;
     align-items: center;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(1, fr);
 }
-#name{
-    background-color: #E96F6F;
+
+#name {
+    background-color: #fff;
     width: 20vw;
-    border: #E96F6F;
+    border: #fff;
     font-size: 1.5vw;
-	font-weight: 250;
+    font-weight: 250;
     padding: 7px;
 }
-#id{
-    background-color: #E96F6F;
+
+#id {
+    background-color: #fff;
     width: 20vw;
-    border: #E96F6F;
+    border: #fff;
     font-size: 1.5vw;
-	font-weight: 250;
+    font-weight: 250;
     padding: 7px;
 }
-#pw{
-    background-color: #E96F6F;
+
+#pw {
+    background-color: #fff;
     width: 20vw;
-    border: #E96F6F;
+    border: #fff;
     font-size: 1.5vw;
-	font-weight: 250;
+    font-weight: 250;
     padding: 7px;
 }
+
 input::placeholder {
-  color: #FFDDDD;
+    color: #747474e8;
 }

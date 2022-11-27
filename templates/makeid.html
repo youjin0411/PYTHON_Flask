@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static', filename='randIdres.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='makeid.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -37,18 +37,23 @@
             </div>
         </nav>
     </header>
-    <div class="body">
+    <div class="body" style="height: 28rem;">
         <h1>🐣 랜덤 아이디 생성 🐣</h1>
-        <div class="Idres">
-            <p>{{ id }}_{{ date }}</p>
-        </div>
-        <div class="Idres">
-            <p>의미 : {{ date2 }}</p>
-        </div>
-        <div class="button">
-            <a href="/" class="myButton2">아이디 저장하기</a>
-            <a href="/randId" class="myButton2" id="randIdres">아이디 다시생성</a>
-        </div>
+        <form action="http://127.0.0.1:5000/makeidres" method="post">
+            <div class="selc">
+                <input type="text" placeholder="영문 및 한글 이름 입력" id="id" name="name[]">
+            </div>
+            <div class="selc">
+                <input type="text" placeholder="비밀번호 입력하기" id="id" name="pw[]">
+            </div>
+            <div class="selc">
+                <input type="text" placeholder="비밀번호 의미 입력하기" id="id" name="mean[]">
+            </div>
+    </div>
+    <div class="button">
+        <button type="submit" id="randIdres">아이디 만들기</button>
+    </div>
+    </form>
     </div>
 </body>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +11,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>삐삐는 아이디</title>
 </head>
+
 <body>
-    <h1>🐣 인스타 아이디 생성 🐣</h1>
-    <div class="Idres"><p>{{ id }}_{{ date }}</p></div>
-    <div class="Idres"><p>의미 : {{ date2 }}</p></div>
-    <div class="button">
-        <a href="/" class="myButton">아이디 저장하기</a>
-        <a href="/randinsId" class="myButton">아이디 다시생성</a>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <a href="/" class="nav-logo">
+                <div>🐣 삐삐는 아이디 🐣</div>
+            </a>
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav-item">
+                        <a href="/login" class="myButton">login</a></li>
+                    <li class="nav-item">
+                        <a href="/mypage" class="myButton">mypage</a></li>
+                    <li class="nav-item">
+                        <a href="/choi" class="myButton">랜덤 아이디 생성</a></li>
+                    <li class="nav-item">
+                        <a href="/makeid" class="myButton">아이디 만들기</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="myButton">game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="body">
+        <h1>🐣 인스타 아이디 생성 🐣</h1>
+        <div class="Idres">
+            <p>{{ id }}_{{ date }}</p>
+        </div>
+        <div class="Idres">
+            <p>의미 : {{ date2 }}</p>
+        </div>
+        <div class="button">
+            <a href="/" class="myButton2">아이디 저장하기</a>
+            <a href="/randinsId" class="myButton2" id="randIdres">아이디 다시생성</a>
+        </div>
     </div>
 </body>
+
 </html>

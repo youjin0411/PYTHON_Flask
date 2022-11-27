@@ -13,25 +13,51 @@
 </head>
 
 <body>
-    <h1>🐣 마이페이지 🐣</h1>
-    <div class="group">
-        <div class="back">
-            <div class="char">{{char}}</div>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <a href="/" class="nav-logo">
+                <div>🐣 삐삐는 아이디 🐣</div>
+            </a>
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav-item">
+                        <a href="/login" class="myButton">login</a></li>
+                    <li class="nav-item">
+                        <a href="/mypage" class="myButton">mypage</a></li>
+                    <li class="nav-item">
+                        <a href="/choi" class="myButton">랜덤 아이디 생성</a></li>
+                    <li class="nav-item">
+                        <a href="/makeid" class="myButton">아이디 만들기</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="myButton">game</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="home">
+        <h1>🐣 마이페이지 🐣</h1>
+        <div class="group">
+            <div class="back">
+                <div class="char">{{char}}</div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-item">이름 : {{name}}
+                </div>
+                <div class="grid-item">아이디 : {{id}}
+                </div>
+                <div class="grid-item">비밀번호 : {{pw}}
+                </div>
+                <div class="grid-item">마일리지: 0
+                </div>
+            </div>
         </div>
-        <div class="grid-container">
-            <div class="grid-item">이름 : {{name}}
-            </div>
-            <div class="grid-item">아이디 : {{id}}
-            </div>
-            <div class="grid-item">비밀번호 : {{pw}}
-            </div>
-            <div class="grid-item">마일리지: 0
-            </div>
+        <div class="btn">
+            <a href="/saveidview" class="myButton">저장된 아이디 보기</a>
+            <a href="#" class="myButton">캐릭터 상점</a>
         </div>
-    </div>
-    <div class="btn">
-        <a href="/saveidview" class="myButton">저장된 아이디 보기</a>
-        <a href="#" class="myButton">캐릭터 상점</a>
     </div>
 </body>
 <script src="{{ url_for('static', filename='mypage.js') }}"></script>
