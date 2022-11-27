@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
     <title>삐삐는 아이디</title>
 </head>
+
 <body>
     <h1>🐣 아이디 의미 🐣</h1>
     <main>
@@ -17,16 +19,14 @@
             <ul>
                 {% for d1 in data['암호'] %}
                 <li> {{ d1 }}</li>
-                <hr>
-                {% endfor %}
+                <hr> {% endfor %}
             </ul>
         </div>
         <div class="mean">
             <ul>
                 {% for d2 in data['의미'] %}
                 <li> {{ d2 }}</li>
-                <hr>
-                {% endfor %}
+                <hr> {% endfor %}
             </ul>
         </div>
     </main>
@@ -35,4 +35,5 @@
         <a href="/meandateinsid" class="myButton">인스타 의미 분석</a>
     </div>
 </body>
+
 </html>

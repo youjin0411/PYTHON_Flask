@@ -281,13 +281,19 @@ def saveidview():
     cursor.execute(sql, value)
     data = cursor.fetchall()
     # data에서 ans값만 뽑아내기
+
+    result = []
+    result2 = []
     for row in data:
-        data = row[1:]
+        result.append(row[2])
+
+    for row2 in data:
+        result2.append(row2[3])
 
     cursor.close()
     conn.close()
 
-    return render_template('saveidview.html', error=error, char=data)
+    return render_template('saveidview.html', error=error, char=result, char2 = result2)
 
 if __name__ == "__main__":
     app.run()
