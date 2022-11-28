@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='store.css') }}" rel="stylesheet">
+    <title>삐삐는 아이디</title>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <a href="/" class="nav-logo">
+                <div>🐣 삐삐는 아이디 🐣</div>
+            </a>
+            <div class="nav-menu">
+                <ul class="nav-list" id="nav-list">
+                    <li class="nav-item">
+                        <a href="/login" class="myButton">login</a></li>
+                    <li class="nav-item">
+                        <a href="/mypage" class="myButton">mypage</a></li>
+                    <li class="nav-item">
+                        <a href="/choi" class="myButton">랜덤 아이디 생성</a></li>
+                    <li class="nav-item">
+                        <a href="/idmean" class="myButton">의미확인</a>
+                        <li class="nav-item">
+                            <a href="/makeid" class="myButton">아이디 만들기</a></li>
+                        <li class="nav-item">
+                            <a href="/game" class="myButton">game</a></li>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <h1>상점</h1>
+    <h2 class="money">M. {{money}}</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 19.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 20.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 21.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 22.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 23.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 24.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 25.png">
+            <div class="price">💰$ 200</div>
+        </div>
+        <div class="grid-item">
+            <img class="char" src="../static/images/Untitled (3)/image 26.png">
+            <div class="price">💰$ 200</div>
+        </div>
+    </div>
+    <div class="grid-selec">
+        <form action="/mypage" method="POST">
+            {%with messages = get_flashed_messages()%} {%if messages %}
+            <script type="text/javascript">
+                alert("{{messages[-1]}}");
+            </script>
+            {%endif%} {%endwith%}
+            <label for="fruit">상품</label>
+            <select name="cute" id="cute">
+                <option value="쿠로미">opt. 쿠로미</option>
+                <option value="마이멜로드">opt. 마이멜로디</option>
+                <option value="포차코">opt. 포차코</option>
+                <option value="시나모롤">opt. 시나모롤</option>
+                <option value="배드바츠마루">opt. 배드바츠마루</option>
+                <option value="리틀트윈스타">opt. 리틀트윈스타</option>
+                <option value="턱시도샘">opt. 턱시도샘</option>
+                <option value="케로케로케로피">opt. 케로케로케로피</option>
+            </select>
+            <input type="submit" value="구매하기">
+        </form>
+    </div>
+</body>
+
+</html>

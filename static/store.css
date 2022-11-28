@@ -1,0 +1,158 @@
+* {
+    font-family: 'Do Hyeon', sans-serif;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    padding-top: 2%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+header {
+    background-color: #ffffff;
+}
+
+nav {
+    height: 44px;
+    /* nav글자 높이 */
+    /* 수평배열 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* nav글자 중앙정렬 */
+}
+
+nav i {
+    font-size: 1.8rem;
+    /* 밥 아이콘 크게 하기 : 아이콘 1.25배 */
+}
+
+.nav-logo>div {
+    float: left;
+    color: #FFE144;
+    font-size: 1.85rem;
+}
+
+nav a {
+    color: #595959;
+}
+
+.nav-toggle {
+    /* toggle버튼이 보이지 않도록  */
+    display: none;
+    /* visibility: hidden; */
+}
+
+.nav-toggle i {
+    color: #595959;
+}
+
+.nav-list {
+    /* 수평배열 */
+    display: flex;
+    column-gap: 3rem;
+    /* 12px = nav글자사이의 거리 */
+}
+
+.nav-link {
+    display: block;
+    /* a 태그가 한 줄 전체를 차지해서 링크가 동작하도록... */
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.grid-container {
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    grid-gap: 1rem;
+    margin-top: 1rem;
+}
+
+.grid-item {
+    display: grid;
+    grid-template-columns: repeat(1, 50%);
+    text-align: center;
+}
+
+.char {
+    width: 8.25rem;
+    height: 7.96rem;
+}
+
+.money {
+    background-color: #fff382ce;
+    color: #595959;
+    border-radius: 1rem;
+    background-size: contain;
+    width: 15%;
+    height: 3%;
+    text-align: center;
+    margin-right: 6rem;
+}
+
+.grid-selec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    border-radius: 2rem;
+    border: solid #fff;
+}
+
+select:hover {
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 2rem;
+}
+
+select,
+option {
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+}
+
+.grid-selec {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    grid-column-gap: 20px;
+}
+
+input {
+    font-size: 1rem;
+    color: #fff;
+    background-color: #595959;
+    width: 8rem;
+    height: 2.5rem;
+    border: solid #595959;
+}
+
+label {
+    font-size: 1rem;
+}

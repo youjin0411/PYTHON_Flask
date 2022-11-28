@@ -171,6 +171,10 @@ def main():
         cursor.execute(sql, value)
  
         data = cursor.fetchall()
+
+        for row in data:
+            session['char'] = row[5]
+            
         cursor.close()
         conn.close()
  
@@ -181,6 +185,7 @@ def main():
             session['login'] = name
             session['id'] = id
             session['pw'] = pw 
+
             return redirect(url_for('mypage')) 
         else:
             flash('아이디 또는 비밀번호가 틀렸습니다.')
@@ -259,16 +264,32 @@ def mypage():
     cursor.execute(sql, value)
     data = cursor.fetchall()
     # data에서 ans값만 뽑아내기
-    for row in data:
-        data = row[5]
+    if session['char'] == None:
+        for row in data:
+            session['char'] = row[5]
+            session['money'] = row[4]
 
     if session['money'] == None:
         session['money'] = 0
     else:
         session['money'] = session['money']
+
+    # if session['money'] == None:
+    #     session['money'] = 0
+    # else:
+    #     session['money'] = session['money']
+
     cursor.close()
     conn.close()
-    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data, money=session['money'])
+    if request.method == 'POST':
+        if session['money'] < 200 or session['money'] == 0:
+            flash("돈이 부족합니다.")
+            return render_template('store.html', money = session['money'])
+        else:
+            session['char'] = request.form['cute']
+            session['money'] = session['money'] - 200
+
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=session['char'], money=session['money'])#money=session['money']
 
 @app.route('/saveidview', methods=['GET', 'POST'])
 def saveidview():
@@ -351,6 +372,11 @@ def game():
 
         session['money'] = session['money'] + 100
         return render_template('game.html', makeId=makeId, id_mean=id_mean)
+
+@app.route('/store', methods=['GET', 'POST'])
+def store():
+    money = session['money']
+    return render_template('store.html', money=money)
 
 if __name__ == "__main__":
     app.run()
