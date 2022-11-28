@@ -180,10 +180,11 @@ def main():
         if data:
             session['login'] = name
             session['id'] = id
-            session['pw'] = pw
+            session['pw'] = pw 
             return redirect(url_for('mypage')) 
         else:
-            error = 'invalid input data detected !'
+            flash('아이디 또는 비밀번호가 틀렸습니다.')
+            return render_template('login.html')
     return render_template('login.html', error = error)
 
 # 회원가입
@@ -237,41 +238,32 @@ def register():
         flash("중복된 이메일 주소입니다.")
     return render_template('signup.html', error=error)
 
-# 로그인 확인
-@app.route('/loginindex', methods=['GET', 'POST'])
-def loginindex():
-    error = None
-    id = session['login']
-    return render_template('loginindex.html', error=error, name=id)
-
 # 마이페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     if 'login' not in session:
-        flash('로그인이 필요합니다.')
         return render_template('login.html')
-    else:
-        error = None
-        name = session['login']
-        id = session['id']
-        pw = session['pw']
-        
-        if name == None:
-            return redirect(url_for('/'))
+    error = None
+    name = session['login']
+    id = session['id']
+    pw = session['pw']
+    
+    if name == None:
+        return redirect(url_for('/'))
 
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        sql = "SELECT * FROM mypage WHERE id = %s"
-        value = (id)
-        cursor.execute("set names utf8")
-        cursor.execute(sql, value)
-        data = cursor.fetchall()
-        # data에서 ans값만 뽑아내기
-        for row in data:
-            data = row[5]
-        cursor.close()
-        conn.close()
-        return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM mypage WHERE id = %s"
+    value = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql, value)
+    data = cursor.fetchall()
+    # data에서 ans값만 뽑아내기
+    for row in data:
+        data = row[5]
+    cursor.close()
+    conn.close()
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
 
 @app.route('/saveidview', methods=['GET', 'POST'])
 def saveidview():
