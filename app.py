@@ -247,28 +247,31 @@ def loginindex():
 # 마이페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
-    id = session['id']
-    if id == "":
-        flash("로그인 후 이용해주십시오.")
-        return redirect('/mypage')
-    error = None
-    name = session['login']
-    id = session['id']
-    pw = session['pw']
-    
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    sql = "SELECT * FROM mypage WHERE id = %s"
-    value = (id)
-    cursor.execute("set names utf8")
-    cursor.execute(sql, value)
-    data = cursor.fetchall()
-    # data에서 ans값만 뽑아내기
-    for row in data:
-        data = row[5]
-    cursor.close()
-    conn.close()
-    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
+    if 'login' not in session:
+        flash('로그인이 필요합니다.')
+        return render_template('login.html')
+    else:
+        error = None
+        name = session['login']
+        id = session['id']
+        pw = session['pw']
+        
+        if name == None:
+            return redirect(url_for('/'))
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql = "SELECT * FROM mypage WHERE id = %s"
+        value = (id)
+        cursor.execute("set names utf8")
+        cursor.execute(sql, value)
+        data = cursor.fetchall()
+        # data에서 ans값만 뽑아내기
+        for row in data:
+            data = row[5]
+        cursor.close()
+        conn.close()
+        return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
 
 @app.route('/saveidview', methods=['GET', 'POST'])
 def saveidview():
@@ -295,6 +298,7 @@ def saveidview():
     conn.close()
 
     return render_template('saveidview.html', error=error, char=result, char2 = result2)
+
 
 @app.route('/makeid', methods=['GET', 'POST'])
 def makeid():
