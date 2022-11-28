@@ -102,3 +102,15 @@ nav a {
     font-size: 1.2rem;
     color: #595959;
 }
+
+.character {
+    background-image: url('../static/images/char.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 4.8rem;
+    width: 5.8rem;
+    padding-top: 20px;
+    position: absolute;
+    left: 5rem;
+}

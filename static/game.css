@@ -12,6 +12,7 @@ ul {
 }
 
 h1 {
+    padding-top: 3%;
     text-align: center;
     margin: 0 auto;
     margin-top: 40px;
@@ -82,4 +83,12 @@ nav a {
 
 .nav-link {
     color: #fff;
+}
+
+.quiz {
+    background-color: #FFEE54;
+    height: 10rem;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 1px;
 }

@@ -261,9 +261,13 @@ def mypage():
     # data에서 ans값만 뽑아내기
     for row in data:
         data = row[5]
+        money = row[4]
+    session['money'] = money
+    if session['money'] == None:
+        session['money'] = 0
     cursor.close()
     conn.close()
-    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data)  
+    return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data, money=session['money'])
 
 @app.route('/saveidview', methods=['GET', 'POST'])
 def saveidview():
@@ -326,9 +330,24 @@ def makeidres():
         conn.close()
         return render_template('makeidres.html', id=id, data=pw, data2=mean)
 
-@app.route('/game')
+@app.route('/game', methods=['GET', 'POST'])
 def game():
-    return render_template('game.html')
+        # 엑셀 파일의 숫자 암호 리스트li에 담기
+        for i in range(len(data['암호'])):
+            li.append(data['암호'][i])
+
+        # 엑셀 파일의 암호 의미 리스트 passli에 담기
+        for i in range(len(data['의미'])):
+            passli.append(data['의미'][i])
+
+        # 리스트 li안에 있는 숫자 암호 랜덤으로 하나 makeId에 주기
+        makeId = random.sample(li, 1)
+        ind = li.index(makeId)
+
+        # [] 빠져나오기
+        makeId = str(makeId).strip('[]')
+        id_mean = str(passli[ind]).strip('[]')
+        return render_template('game.html', makeId=makeId, id_mean=id_mean)
 
 if __name__ == "__main__":
     app.run()
