@@ -171,21 +171,16 @@ def main():
         cursor.execute(sql, value)
  
         data = cursor.fetchall()
-
-        for row in data:
-            session['char'] = row[5]
-            
-        cursor.close()
-        conn.close()
- 
+             
         for row in data:
             data = row[0]
- 
+
+        cursor.close()
+        conn.close()
         if data:
             session['login'] = name
             session['id'] = id
             session['pw'] = pw 
-
             return redirect(url_for('mypage')) 
         else:
             flash('아이디 또는 비밀번호가 틀렸습니다.')
@@ -214,6 +209,8 @@ def register():
  
         for row in data:
             data = row[0]
+            session['char'] = row[5]
+            session['money'] = row[4]
 
         if id == "" or pw == "" or name == "":
             flash("아이디와 비밀번호, 이름을 입력해주세요.")
@@ -252,43 +249,40 @@ def mypage():
     name = session['login']
     id = session['id']
     pw = session['pw']
-    
-    if name == None:
-        return redirect(url_for('/'))
+
+    if session['money'] == None or session['money'] == "" or session['money'] == 0:
+        session['money'] = 0
 
     conn = mysql.connect()
     cursor = conn.cursor()
-    sql = "SELECT * FROM mypage WHERE id = %s"
-    value = (id)
+    sql = "update mypage set ans = %s, money = %s where id = %s"
+    value = (session['char'], session['money'],id)
     cursor.execute("set names utf8")
     cursor.execute(sql, value)
-    data = cursor.fetchall()
-    # data에서 ans값만 뽑아내기
-    if session['char'] == None:
-        for row in data:
-            session['char'] = row[5]
-            session['money'] = row[4]
-
-    if session['money'] == None:
-        session['money'] = 0
-    else:
-        session['money'] = session['money']
-
-    # if session['money'] == None:
-    #     session['money'] = 0
-    # else:
-    #     session['money'] = session['money']
-
     cursor.close()
     conn.close()
+
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql2 = "SELECT * FROM mypage WHERE id = %s"
+    value2 = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql2, value2)
+    data = cursor.fetchall()
+    for row in data:
+        session['char'] = row[5]
+        session['money'] = row[4]
+    # data에서 ans값만 뽑아내기
+    cursor.close()
+    conn.close()
+
     if request.method == 'POST':
-        if session['money'] < 200 or session['money'] == 0:
+        if session['money'] < 200 or session['money'] == 0 or session['money'] == None:
             flash("돈이 부족합니다.")
             return render_template('store.html', money = session['money'])
         else:
             session['char'] = request.form['cute']
             session['money'] = session['money'] - 200
-
     return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=session['char'], money=session['money'])#money=session['money']
 
 @app.route('/saveidview', methods=['GET', 'POST'])
@@ -369,9 +363,11 @@ def game():
         # [] 빠져나오기
         makeId = str(makeId).strip('[]')
         id_mean = str(passli[ind]).strip('[]')
+        if session['money'] == None or session['money'] == 0:
+            session['money'] = 0
 
         session['money'] = session['money'] + 100
-        return render_template('game.html', makeId=makeId, id_mean=id_mean)
+        return render_template('game.html', makeId=makeId, id_mean=id_mean, money=session['money'])
 
 @app.route('/store', methods=['GET', 'POST'])
 def store():
