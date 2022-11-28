@@ -261,10 +261,11 @@ def mypage():
     # data에서 ans값만 뽑아내기
     for row in data:
         data = row[5]
-        money = row[4]
-    session['money'] = money
+
     if session['money'] == None:
         session['money'] = 0
+    else:
+        session['money'] = session['money']
     cursor.close()
     conn.close()
     return render_template('mypage.html', error=error, name=name, id=id, pw=pw, char=data, money=session['money'])
@@ -347,6 +348,8 @@ def game():
         # [] 빠져나오기
         makeId = str(makeId).strip('[]')
         id_mean = str(passli[ind]).strip('[]')
+
+        session['money'] = session['money'] + 100
         return render_template('game.html', makeId=makeId, id_mean=id_mean)
 
 if __name__ == "__main__":

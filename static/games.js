@@ -25,7 +25,7 @@ function showingMole() {
         moleNumber = document.getElementById(`${randomHole()}`);
         moleActive(moleNumber);
         moleNumber.addEventListener('click', catchMole);
-        moleCatch = setTimeout(seeMOle, 1000);
+        moleCatch = setTimeout(seeMOle, 3000);
         turn++;
     } else {
         modalEvent();
@@ -72,8 +72,10 @@ function modalEvent() {
     let point = (getPoint / 10) * 100;
     if (point <= 70) {
         ending.children[0].innerHTML = "<span>GAME OVER </span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
+        ending.children[1].innerHTML = point;
     } else {
         ending.children[0].innerHTML = "<span>YOU WIN</span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
+        ending.children[1].innerHTML = point;
     }
     ending.classList.add(finalEnding);
     endingBtn.classList.add(finalEnding);
