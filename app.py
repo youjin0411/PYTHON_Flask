@@ -51,9 +51,6 @@ def randId():
 # 일반 아이디 생성 결과 페이지
 @app.route('/randIdres', methods = ['POST', 'GET'])
 def randIdres():
-    data = pd.read_excel('db.xlsx')
-    li = []
-    passli = []
     if request.method == 'POST':
         id =  request.form.getlist('id[]')
         # 엑셀 파일의 숫자 암호 리스트li에 담기
@@ -373,24 +370,24 @@ def makeidres():
 @app.route('/game', methods=['GET', 'POST'])
 def game():
         global data
-        lis = []
-        passlis = []
+        global li
+        global passli
 
         # 엑셀 파일의 숫자 암호 리스트li에 담기
         for i in range(len(data['암호'])):
-            lis.append(data['암호'][i])
+            li.append(data['암호'][i])
 
         # 엑셀 파일의 암호 의미 리스트 passli에 담기
         for i in range(len(data['의미'])):
-            passlis.append(data['의미'][i])
+            passli.append(data['의미'][i])
 
         # 리스트 li안에 있는 숫자 암호 랜덤으로 하나 makeId에 주기
-        makeId = random.sample(lis, 1)
-        ind = lis.index(makeId)
+        makeId = random.sample(li, 1)
+        ind = li.index(makeId)
 
         # [] 빠져나오기
         makeId = str(makeId).strip('[]')
-        id_mean = str(passlis[ind]).strip('[]')
+        id_mean = str(passli[ind]).strip('[]')
 
         error = None
         id = session['id']
