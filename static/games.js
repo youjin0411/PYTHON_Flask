@@ -72,7 +72,8 @@ function modalEvent() {
     let point = (getPoint / 10) * 100;
     if (point <= 70) {
         ending.children[0].innerHTML = "<span>GAME OVER </span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
-        ending.children[1].innerHTML = point;
+        ending.children[1].innerHTML = point + "마일리지를 얻었습니다.";
+        ending.children[2].innerHTML = point + "마일리지를 얻었습니다.";
     } else {
         ending.children[0].innerHTML = "<span>YOU WIN</span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
         ending.children[1].innerHTML = point;

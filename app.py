@@ -275,6 +275,19 @@ def mypage():
         cursor.close()
         conn.close()
 
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql2 = "SELECT * FROM mypage WHERE id = %s"
+    value2 = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql2, value2)
+    data = cursor.fetchall()
+    for row in data:
+        money = row[4]
+    # data에서 ans값만 뽑아내기
+    cursor.close()
+    conn.close()
+
     if request.method == 'POST':
         if money < 200 or money == 0 or money == None:
             flash("돈이 부족합니다.")
@@ -356,6 +369,10 @@ def makeidres():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
+        global data
+        global li
+        global passli
+
         # 엑셀 파일의 숫자 암호 리스트li에 담기
         for i in range(len(data['암호'])):
             li.append(data['암호'][i])
