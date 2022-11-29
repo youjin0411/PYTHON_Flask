@@ -45,7 +45,7 @@ h2 {
 }
 
 header {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 nav {
@@ -105,12 +105,13 @@ select {
 
 .form {
     margin: 0 auto;
-    margin-top: 2%;
+    margin-top: 4%;
     background-color: #FFEE54;
-    width: 50%;
-    height: 150%;
-    padding-top: 3%;
+    width: 40%;
+    height: 110%;
+    padding-top: 2%;
     padding-bottom: 4%;
+    border-radius: 1rem;
 }
 
 #authForm {

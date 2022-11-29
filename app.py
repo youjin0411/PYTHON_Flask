@@ -34,7 +34,7 @@ app.secret_key = "1234"
 mysql.init_app(app)
 
 # 시작 index.html
-@app.route("/")
+@app.route("/index")
 def hello():
     return render_template('index.html')
 
@@ -158,7 +158,7 @@ def meandateinsid():
     return render_template('meandateinsid.html', data2=data2)
 
 # 로그인 페이지
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def main():
     error = None
     if request.method == 'POST':
@@ -189,6 +189,13 @@ def main():
             flash('아이디 또는 비밀번호가 틀렸습니다.')
             return render_template('login.html')
     return render_template('login.html', error = error)
+
+@app.route('/logout',methods=['GET'])
+def logout():
+    session.pop('name',None)
+    session.pop('id',None)
+    session.pop('password',None)
+    return redirect('/')
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -230,7 +237,7 @@ def register():
 
             if not data:
                 conn.commit()
-                return redirect('/login')
+                return redirect('/')
             else:
                 conn.rollback()
                 flash("중복된 이메일 주소입니다.")
@@ -244,9 +251,8 @@ def register():
 # 마이페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
-    if 'login' not in session:
-        flash('로그인이 필요합니다.')
-        return render_template('index.html')
+    if 'id' not in session:
+        return render_template('login.html')
     error = None
     name = session['login']
     id = session['id']
@@ -339,6 +345,9 @@ def saveidview():
 
 @app.route('/makeid', methods=['GET', 'POST'])
 def makeid():
+    if 'id' not in session:
+        flash('로그인이 필요합니다.')
+        return redirect('/')
     return render_template('makeid.html')
 
 @app.route('/makeidres', methods=['GET', 'POST'])
@@ -352,9 +361,6 @@ def makeidres():
         id = str(id).strip("''")
 
         error = None
-        if 'id' not in session:
-            flash('로그인이 필요합니다.')
-            return render_template('login.html')
         user = session['id']
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -376,13 +382,12 @@ def makeidres():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
-    if 'login' not in session:
-        flash("로그인이 필요합니다.")
-        return render_template('login.html')
-        # global data
     data = pd.read_excel('db.xlsx')
     lis = []
     passlis = []
+    if 'id' not in session:
+        flash("로그인을 해주세요.")
+        return redirect('/')
 
     # 엑셀 파일의 숫자 암호 리스트li에 담기
     for i in range(len(data['암호'])):
