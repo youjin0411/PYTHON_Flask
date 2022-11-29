@@ -72,23 +72,24 @@ def randIdres():
         id_mean = str(passli[ind]).strip('[]')
 
         error = None
-        user = session['id']
-        conn = mysql.connect()
-        cursor = conn.cursor()
+        if 'id' in session:
+            user = session['id']
+            conn = mysql.connect()
+            cursor = conn.cursor()
 
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
-        saveid = id,"_",makeId
-        saveid = "".join(saveid)
-        value = (user, saveid, id_mean)
-        cursor.execute(sql, value)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
+            saveid = id,"_",makeId
+            saveid = "".join(saveid)
+            value = (user, saveid, id_mean)
+            cursor.execute(sql, value)
 
-        d = cursor.fetchall()
-        
-        conn.commit()
-        cursor.close()
-        conn.close()
+            d = cursor.fetchall()
+            
+            conn.commit()
+            cursor.close()
+            conn.close()
 
         return render_template('randIdres.html',date=makeId, date2=id_mean, id=id)
 
@@ -100,6 +101,7 @@ def randinsId():
 # 인스타 아이디 생성 결과 페이지
 @app.route('/randinsIdres', methods = ['POST', 'GET'])
 def randinsIdres():
+    global data2
     if request.method == 'POST':
         id =  request.form.getlist('id[]')
     # 엑셀 파일의 인스타 아이디 리스트li2에 담기
@@ -120,23 +122,24 @@ def randinsIdres():
         id_mean2 = str(passli2[ind2]).strip('[]')
 
         error = None
-        user = session['id']
-        conn = mysql.connect()
-        cursor = conn.cursor()
+        if 'id' in session:
+            user = session['id']
+            conn = mysql.connect()
+            cursor = conn.cursor()
 
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
-        saveid = id,"_",makeId2
-        saveid = "".join(saveid)
-        value = (user, saveid, id_mean2)
-        cursor.execute(sql, value)
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            sql = "INSERT INTO save_id (user, saveid, savemean) VALUES (%s, %s, %s)"
+            saveid = id,"_",makeId2
+            saveid = "".join(saveid)
+            value = (user, saveid, id_mean2)
+            cursor.execute(sql, value)
 
-        d = cursor.fetchall()
-        
-        conn.commit()
-        cursor.close()
-        conn.close()
+            d = cursor.fetchall()
+            
+            conn.commit()
+            cursor.close()
+            conn.close()
         return render_template('randinsIdres.html', date=makeId2, date2=id_mean2, id=id)
 
 # 아이디 의미 확인 페이지
@@ -242,7 +245,8 @@ def register():
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     if 'login' not in session:
-        return render_template('login.html')
+        flash('로그인이 필요합니다.')
+        return render_template('index.html')
     error = None
     name = session['login']
     id = session['id']
@@ -348,6 +352,9 @@ def makeidres():
         id = str(id).strip("''")
 
         error = None
+        if 'id' not in session:
+            flash('로그인이 필요합니다.')
+            return render_template('login.html')
         user = session['id']
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -369,51 +376,55 @@ def makeidres():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
-        global data
-        global li
-        global passli
+    if 'login' not in session:
+        flash("로그인이 필요합니다.")
+        return render_template('login.html')
+        # global data
+    data = pd.read_excel('db.xlsx')
+    lis = []
+    passlis = []
 
-        # 엑셀 파일의 숫자 암호 리스트li에 담기
-        for i in range(len(data['암호'])):
-            li.append(data['암호'][i])
+    # 엑셀 파일의 숫자 암호 리스트li에 담기
+    for i in range(len(data['암호'])):
+        lis.append(data['암호'][i])
 
-        # 엑셀 파일의 암호 의미 리스트 passli에 담기
-        for i in range(len(data['의미'])):
-            passli.append(data['의미'][i])
+    # 엑셀 파일의 암호 의미 리스트 passli에 담기
+    for i in range(len(data['의미'])):
+        passlis.append(data['의미'][i])
 
-        # 리스트 li안에 있는 숫자 암호 랜덤으로 하나 makeId에 주기
-        makeId = random.sample(li, 1)
-        ind = li.index(makeId)
+    # 리스트 li안에 있는 숫자 암호 랜덤으로 하나 makeId에 주기
+    makeId = random.sample(lis, 1)
+    ind = lis.index(makeId)
 
-        # [] 빠져나오기
-        makeId = str(makeId).strip('[]')
-        id_mean = str(passli[ind]).strip('[]')
+    # [] 빠져나오기
+    makeId = str(makeId).strip('[]')
+    id_mean = str(passlis[ind]).strip('[]')
 
-        error = None
-        id = session['id']
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        sql = "SELECT * FROM mypage WHERE id = %s"
-        value = (id)
-        cursor.execute("set names utf8")
-        cursor.execute(sql, value)
-        data = cursor.fetchall()
-        for row in data:
-            data = row[4]
-        cursor.close()
-        conn.close()
+    error = None
+    id = session['id']
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM mypage WHERE id = %s"
+    value = (id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql, value)
+    data = cursor.fetchall()
+    for row in data:
+        data = row[4]
+    cursor.close()
+    conn.close()
 
-        data = data + 100
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        sql = "update mypage set money = %s where id = %s"
-        value = (data,id)
-        cursor.execute("set names utf8")
-        cursor.execute(sql, value)
-        conn.commit()
-        cursor.close()
-        conn.close()
-        return render_template('game.html', makeId=makeId, id_mean=id_mean, money=data)
+    data = data + 100
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    sql = "update mypage set money = %s where id = %s"
+    value = (data,id)
+    cursor.execute("set names utf8")
+    cursor.execute(sql, value)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return render_template('game.html', makeId=makeId, id_mean=id_mean, money=data)
 
 @app.route('/store', methods=['GET', 'POST'])
 def store():
